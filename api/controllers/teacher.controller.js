@@ -1,10 +1,10 @@
 var Teacher = require('mongoose').model('Teacher');
 
-var addTeacher = (_nome, _cpf, _idCracha) => {
+var addTeacher = (_teacher) => {
   var teacher = new Teacher ();
-  teacher.nome = _nome;
-  teacher.cpf = _cpf;
-  teacher.idCracha = _idCracha;
+  teacher.nome = _teacher.nome;
+  teacher.cpf = _teacher.cpf;
+  teacher.idCracha = _teacher.idCracha;
   teacher.save(function(err){
     if(err) throw err;
   });

@@ -1,10 +1,10 @@
 var Student = require('mongoose').model('Student');
 
-var addStudent = (_nome, _cpf, _idCracha) => {
+var addStudent = (_student) => {
   var student = new Student ();
-  student.nome = _nome;
-  student.cpf = _cpf;
-  student.idCracha = _idCracha;
+  student.nome = _student.nome;
+  student.cpf = _student.cpf;
+  student.idCracha = _student.idCracha;
   student.save(function(err){
     if(err) throw err;
   });
