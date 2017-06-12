@@ -31,7 +31,7 @@ module.exports = function() {
 
 	require('../models/teacher');
 
-	require('../models/class');
+	require('../models/lesson');
 
 	return db;
 };
