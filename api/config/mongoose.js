@@ -27,9 +27,11 @@ module.exports = function() {
 	});
 
 	//Adding Schemas to DB
-	require('../models/student.js');
+	require('../models/student');
 
-	require('../models/teacher.js');
+	require('../models/teacher');
+
+	require('../models/class');
 
 	return db;
 };
