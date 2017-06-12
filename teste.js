@@ -6,22 +6,22 @@ var student_controller = require('./api/controllers/student.controller');
 var teacher_controller = require('./api/controllers/teacher.controller');
 var lesson_controller = require('./api/controllers/lesson.controller');
 
-student_controller.addStudent({
-  nome: 'Cris',
-  cpf: '1',
-  idCracha: '2'
-});
-
-teacher_controller.addTeacher({
-  nome: 'Roberto',
-  cpf: '3',
-  idCracha: '4'
-});
+// student_controller.addStudent({
+//   nome: 'Cris',
+//   cpf: '1',
+//   idCracha: '2'
+// });
+//
+// teacher_controller.addTeacher({
+//   nome: 'Roberto',
+//   cpf: '3',
+//   idCracha: '4'
+// });
 
 teacher_controller.findByCPF('3', (myTeacher) => {
-  console.log(mongoose.Types.ObjectId(myTeacher[0]));
-  lesson_controller.createMyClass({
-    teacher: mongoose.Types.ObjectId(myTeacher[0]),
+  console.log(db.Types.ObjectId(myTeacher[0]._id));
+  lesson_controller.createLesson({
+    teacher: db.Types.ObjectId(myTeacher[0]._id),
     startTime: Date.now(),
     idThing: '1'
   });
