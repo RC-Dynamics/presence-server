@@ -10,6 +10,26 @@ var addTeacher = (_nome, _cpf, _idCracha) => {
   });
 }
 
+var findByCPF = (_cpf, callback) => {
+  Teacher.find({cpf: _cpf}, (err, teacher) => {
+    if (err){
+      throw err;
+    }
+    callback(teacher);
+  });
+}
+
+var findByCracha = (_cracha, callback) => {
+  Teacher.find({idCracha: _cracha}, (err, teacher) => {
+    if (err){
+      throw err;
+    }
+    callback(teacher);
+  });
+}
+
 module.exports = {
-  addTeacher
+  addTeacher,
+  findByCPF,
+  findByCracha
 }
