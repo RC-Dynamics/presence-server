@@ -19,6 +19,7 @@
   "homepage": "https://github.com/RC-Dynamics/presence-server#readme",
   "dependencies": {
     "meshblu": "^3.0.1",
-    "mongoose": "^4.10.4"
+    "mongoose": "^4.10.4",
+    "mqtt": "^2.8.2"
   }
 }
