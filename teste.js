@@ -1,4 +1,5 @@
 const mongoose = require('./api/config/mongoose');
+const mongo = require('mongoose');
 
 const db = mongoose();
 
@@ -18,20 +19,18 @@ var lesson_controller = require('./api/controllers/lesson.controller');
 //   idCracha: '4'
 // });
 
-teacher_controller.findByCPF('3', (myTeacher) => {
-  console.log(db.Types.ObjectId(myTeacher[0]._id));
-  lesson_controller.createLesson({
-    teacher: db.Types.ObjectId(myTeacher[0]._id),
-    startTime: Date.now(),
-    idThing: '1'
-  });
-});
-
-// student_controller.findByCracha('2', (_student) => {
-//   console.log(JSON.stringify(_student[0], undefined, 2));
-//   lesson_controller.addStudent({
-//     currTime: Date.now(),
-//     idThing: '1',
-//     student: _student[0]
+// teacher_controller.findByCPF('3', (myTeacher) => {
+//   lesson_controller.createLesson({
+//     teacher: myTeacher[0],
+//     startTime: Date.now(),
+//     idThing: '1'
 //   });
 // });
+
+student_controller.findByCracha('2', (_student) => {
+  lesson_controller.addStudent({
+    currTime: Date.now(),
+    idThing: '1',
+    student: _student[0]
+  });
+});
