@@ -2,7 +2,12 @@ var Lesson = require('mongoose').model('Lesson');
 
 var createLesson = (info) => {
   var lesson = new Lesson ();
-  lesson.teacher = info.teacher._id;
+  lesson.teacher = {
+    cpf: info.teacher.cpf,
+    nome: info.teacher.nome,
+    idCracha: info.teacher.idCracha,
+    _id: info.teacher._id
+  };
   lesson.startTime = info.startTime;
   lesson.idThing = info.idThing;
   lesson.endTime = info.startTime + (1000*60*60*3);
@@ -11,13 +16,18 @@ var createLesson = (info) => {
   });
 }
 
-var addStudent = (_info) => {
-  Lesson.find({idThing: _info.idThing})
-  .where('startTime').lte(_info.currTime)
-  .where('endTime').gte(_info.currTime)
+var addStudent = (info) => {
+  Lesson.find({idThing: info.idThing})
+  .where('startTime').lte(info.currTime)
+  .where('endTime').gte(info.currTime)
   .exec((err, lesson) => {
     if(err) throw err;
-    lesson[0].students.push(_info.student._id);
+    lesson[0].students.push({
+      cpf: info.student.cpf,
+      nome: info.student.nome,
+      idCracha: info.student.idCracha,
+      _id: info.student._id
+    });
     lesson[0].save((err) => {
       if (err) throw err;
     });
