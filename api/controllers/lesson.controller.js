@@ -14,11 +14,14 @@ var createLesson = (info) => {
 var addStudent = (_info) => {
   Lesson.find({idThing: _info.idThing})
   .where('startTime').lte(_info.currTime)
-  .where('endTime').gte(_info.currTime), (err, lesson) => {
+  .where('endTime').gte(_info.currTime)
+  .exec((err, lesson) => {
     if(err) throw err;
-    console.log(lesson[0]);
     lesson[0].students.push(_info.student._id);
-  };
+    lesson[0].save((err) => {
+      if (err) throw err;
+    });
+  });
 }
 
 module.exports = {
