@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Server for Presence using Knot",
   "main": "server.js",
+  "engines": {
+    "node": "8.x",
+    "npm": "5.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node teste.js"
   },
   "repository": {
     "type": "git",
