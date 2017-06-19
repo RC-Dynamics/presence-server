@@ -3,7 +3,7 @@ var config = require('./config'),
 
 module.exports = function() {
 	mongoose.Promise = global.Promise;
-	var db = mongoose.connect(config.db);
+	var db = mongoose.connect(process.env.MONGODB_URI || config.db);
 
 	// CONNECTION EVENTS
 	// When successfully connected
