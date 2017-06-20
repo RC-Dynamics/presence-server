@@ -35,7 +35,6 @@ var addStudent = (info) => {
 }
 
 var listByCpf = (req, res) => {
-  console.log(req.query.cpf + ' ' + typeof req.query.cpf)
   Lesson.find( {'teacher.cpf': req.query.cpf } , (err, lessons) => {
     if(err){
 			res.status(404).json(err);
@@ -48,7 +47,6 @@ var listByCpf = (req, res) => {
 				message: 'Lessons not found.'
       });
     } else {
-      console.log(lessons);
       res.status(200).json(lessons);
     }
   });
