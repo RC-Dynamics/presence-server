@@ -4,6 +4,8 @@ const mongoose = require('./api/config/mongoose');
 // const mqtt = require('./api/config/mqtt');
 const express = require('./api/config/express');
 
+var port = process.env.PORT || config.port;
+
 // Initializing the data base
 var db = mongoose();
 
@@ -12,8 +14,9 @@ var db = mongoose();
 
 // Initializing the express app
 var app = express();
-app.listen(config.port);
-console.log('server running at http://localhost:' + config.port);
+
+app.listen(port);
+console.log('server running at http://localhost:' + port);
 
 // Initializing the mqtt communication
 // var comm = mqtt();

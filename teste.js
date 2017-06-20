@@ -6,9 +6,10 @@ const express = require('./api/config/express');
 const db = mongoose();
 const app = express();
 
-app.listen(config.port);
+var port = process.env.PORT || config.port;
 
-console.log('server running at http://localhost:' + config.port);
+app.listen(port);
+console.log('server running at http://localhost:' + port);
 //
 // var student_controller = require('./api/controllers/student.controller');
 // var teacher_controller = require('./api/controllers/teacher.controller');
