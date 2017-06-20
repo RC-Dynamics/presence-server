@@ -13,7 +13,7 @@ module.exports = () => {
 
   client.on('message', (topic, message) => {
     if(topic === 'ChamadaRFID/UFPE/CIn/Sala_1_PUB') {
-      console.log(message);
+      console.log(message.toString());
     }
   })
 }
