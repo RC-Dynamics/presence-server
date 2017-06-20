@@ -3,12 +3,13 @@ var config = require('./config'),
 
 module.exports = function() {
 	mongoose.Promise = global.Promise;
-	var db = mongoose.connect(process.env.MONGODB_URI || config.db);
+	var uri = process.env.MONGODB_URI || config.db;
+	var db = mongoose.connect(uri);
 
 	// CONNECTION EVENTS
 	// When successfully connected
 	db.connection.on('connected', function () {
-		console.log('Mongoose default connection open to ' + config.db);
+		console.log('Mongoose default connection open to ' + uri);
 	});
 
 	// If the connection throws an error
