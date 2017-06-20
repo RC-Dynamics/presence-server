@@ -18,6 +18,8 @@ var app = express();
 app.listen(port);
 console.log('server running at http://localhost:' + port);
 
+var comm = mqtt();
+
 // Initializing the mqtt communication
 // var comm = mqtt();
 
