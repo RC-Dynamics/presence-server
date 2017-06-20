@@ -1,18 +1,19 @@
 const mqtt = require('mqtt');
-var student_controller = require('./api/controllers/student.controller');
-var teacher_controller = require('./api/controllers/teacher.controller');
-var class_controller = require('./api/controllers/class.controller');
 
 module.exports = () => {
-  const client = mqtt.connect('') // NEED TO DEFINE THE URL
+  const client = mqtt.connect('mqtt://iot.eclipse.org');
+
+  var student_controller = require('../controllers/student.controller');
+  var teacher_controller = require('../controllers/teacher.controller');
+  var lesson_controller = require('../controllers/lesson.controller');
 
   client.on('connect', () => {
-    client.subscribe('') // NEED TO DEFINE THE TOPIC'S NAME == NEW READ
+    client.subscribe('ChamadaRFID/UFPE/CIn/Sala_1_PUB');
   })
 
   client.on('message', (topic, message) => {
-    if(topic === '') { // NEW READ
-
+    if(topic === 'ChamadaRFID/UFPE/CIn/Sala_1_PUB') {
+      console.log(message);
     }
   })
 }

@@ -2,9 +2,11 @@ const mongoose = require('./api/config/mongoose');
 const config = require('./api/config/config');
 const mongo = require('mongoose');
 const express = require('./api/config/express');
+const mqtt = require('./api/config/mqtt');
 
 const db = mongoose();
 const app = express();
+const comm = mqtt();
 
 var port = process.env.PORT || config.port;
 

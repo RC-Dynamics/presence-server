@@ -1,8 +1,8 @@
 // const meshblu = require('./api/config/meshblu');
 const config = require('./api/config/config');
-const mongoose = require('./api/config/mongoose');
-// const mqtt = require('./api/config/mqtt');
 const express = require('./api/config/express');
+const mongoose = require('./api/config/mongoose');
+const mqtt = require('./api/config/mqtt');
 
 var port = process.env.PORT || config.port;
 
