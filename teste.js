@@ -16,19 +16,25 @@ console.log('server running at http://localhost:' + port);
 // var student_controller = require('./api/controllers/student.controller');
 // var teacher_controller = require('./api/controllers/teacher.controller');
 // var lesson_controller = require('./api/controllers/lesson.controller');
-//
+
 // student_controller.addStudent({
-//   nome: 'Cris',
+//   nome: 'Roberto',
 //   cpf: '1',
-//   idCracha: '2'
+//   idCracha: '9717754'
 // });
 //
 // teacher_controller.addTeacher({
-//   nome: 'Roberto',
-//   cpf: '3',
-//   idCracha: '4'
+//   nome: 'Lucas',
+//   cpf: '2',
+//   idCracha: 'fdd8a7e5'
 // });
 //
+// teacher_controller.addTeacher({
+//   nome: 'Renato',
+//   cpf: '3',
+//   idCracha: '264ed848'
+// });
+
 // teacher_controller.findByCPF('3', (teacher) => {
 //   lesson_controller.createLesson({
 //     teacher: teacher[0],
