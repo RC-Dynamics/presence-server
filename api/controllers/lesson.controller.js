@@ -1,4 +1,5 @@
 var Lesson = require('mongoose').model('Lesson');
+const _ = require('lodash');
 
 var createLesson = (info) => {
   var lesson = new Lesson ();
@@ -16,22 +17,21 @@ var createLesson = (info) => {
   });
 }
 
-var addStudent = (info) => {
-  Lesson.find({idThing: info.idThing})
-  .where('startTime').lte(info.currTime)
-  .where('endTime').gte(info.currTime)
-  .exec((err, lesson) => {
-    if(err) throw err;
-    lesson[0].students.push({
-      cpf: info.student.cpf,
-      nome: info.student.nome,
-      idCracha: info.student.idCracha,
-      _id: info.student._id
+var addStudent = (lesson, student) => {
+  // Find if this student already is in this lesson
+  var foundStudent = lesson.students.filter((_student) => student.cpf === _student.cpf);
+  // If didnt found thid student in this lesson, insert
+  if(foundStudent.length === 0){
+    lesson.students.push({
+      cpf: student.cpf,
+      nome: student.nome,
+      idCracha: student.idCracha,
+      _id: student._id
     });
-    lesson[0].save((err) => {
+    lesson.save((err) => {
       if (err) throw err;
     });
-  });
+  }
 }
 
 var listByCpf = (req, res) => {
@@ -52,8 +52,32 @@ var listByCpf = (req, res) => {
   });
 }
 
+var findCurrLesson = (info, callback) => {
+  Lesson.find({idThing: info.idThing})
+  .where('startTime').lte(info.currTime)
+  .where('endTime').gte(info.currTime)
+  .exec((err, lesson) => {
+    if(err) throw err;
+    if (!_.isEmpty(lesson[0])) {
+      callback(lesson[0]);
+    }
+    else {
+      callback(undefined);
+    }
+  });
+}
+
+var endLesson = (lesson, endTime) => {
+  lesson.endTime = endTime;
+  lesson.save((err) => {
+    if(err) throw err;
+  });
+}
+
 module.exports = {
   createLesson,
   addStudent,
-  listByCpf
+  listByCpf,
+  findCurrLesson,
+  endLesson
 }

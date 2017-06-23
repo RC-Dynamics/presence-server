@@ -1,4 +1,5 @@
 var Student = require('mongoose').model('Student');
+const _ = require('lodash');
 
 var addStudent = (_student) => {
   var student = new Student ();
@@ -15,7 +16,12 @@ var findByCPF = (_cpf, callback) => {
     if (err){
       throw err;
     }
-    callback(student);
+    if(!_.isEmpty(student[0])){
+      callback(student[0]);
+    }
+    else{
+      callback(undefined);
+    }
   });
 }
 
@@ -24,7 +30,12 @@ var findByCracha = (_cracha, callback) => {
     if (err){
       throw err;
     }
-    callback(student);
+    if(!_.isEmpty(student[0])){
+      callback(student[0]);
+    }
+    else{
+      callback(undefined);
+    }
   });
 }
 

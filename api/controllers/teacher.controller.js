@@ -1,4 +1,5 @@
 var Teacher = require('mongoose').model('Teacher');
+const _ = require('lodash');
 
 var addTeacher = (_teacher) => {
   var teacher = new Teacher ();
@@ -15,7 +16,12 @@ var findByCPF = (_cpf, callback) => {
     if (err){
       throw err;
     }
-    callback(teacher);
+    if(!_.isEmpty(teacher[0])){
+      callback(teacher[0]);
+    }
+    else{
+      callback(undefined);
+    }
   });
 }
 
@@ -24,7 +30,12 @@ var findByCracha = (_cracha, callback) => {
     if (err){
       throw err;
     }
-    callback(teacher);
+    if(!_.isEmpty(teacher[0])){
+      callback(teacher[0]);
+    }
+    else{
+      callback(undefined);
+    }
   });
 }
 
