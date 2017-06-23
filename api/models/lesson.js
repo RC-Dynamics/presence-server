@@ -16,7 +16,7 @@ var LessonSchema = new Schema({
 	}],
   startTime: { type: Date, default: Date.now(), required: true },
 	endTime: { type: Date, default: Date.now(), required: true },
-	idThing: {type: Number, required: true }
+	idThing: {type: String, required: true }
 });
 
 module.exports = mongoose.model('Lesson', LessonSchema);
