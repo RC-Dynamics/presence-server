@@ -2,18 +2,21 @@ const mqtt = require('mqtt');
 
 module.exports = () => {
   const client = mqtt.connect('mqtt://iot.eclipse.org');
-
-  var student_controller = require('../controllers/student.controller');
-  var teacher_controller = require('../controllers/teacher.controller');
-  var lesson_controller = require('../controllers/lesson.controller');
+  var mqtt_controller = require('../controllers/mqtt.controller');
 
   client.on('connect', () => {
     client.subscribe('ChamadaRFID/UFPE/CIn/Sala_1_PUB');
-  })
+    client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'false');
+  });
 
   client.on('message', (topic, message) => {
     if(topic === 'ChamadaRFID/UFPE/CIn/Sala_1_PUB') {
-      console.log(message.toString());
+      var idThing = 'Sala_1';
+      var idCracha = message.toString();
+      var currTime = Date.now(); // SEND IN THE MESSAGE OR GET WHEN ARRIVE??????
+      mqtt_controller.handleNewIdRead(client, idCracha, idThing, currTime);
     }
-  })
+  });
+
+  return client;
 }
