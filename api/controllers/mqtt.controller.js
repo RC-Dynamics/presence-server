@@ -44,6 +44,7 @@ var handleNewIdRead = (client, idCracha, idThing, currTime) => {
           console.log(`Aula iniciada: ${currTime} - ${teacher.nome}`);
         }
       });
+    client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'true');
     }
   });
 
@@ -58,11 +59,12 @@ var handleNewIdRead = (client, idCracha, idThing, currTime) => {
         // If it is happenning any class in this time
         if(lesson) {
           lesson_controller.addStudent(lesson, student);
+          client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'true');
           console.log('Aluno adicionado');
         }
         // If there isnt started any class in the current time/
         else {
-          client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'true');
+          client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'false');
           console.log('Aluno não adicionado');
         }
       });

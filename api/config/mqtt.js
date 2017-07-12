@@ -6,7 +6,7 @@ module.exports = () => {
 
   client.on('connect', () => {
     client.subscribe('ChamadaRFID/UFPE/CIn/Sala_1_PUB');
-    client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'false');
+    client.publish('ChamadaRFID/UFPE/CIn/Sala_1_SUB', 'true');
   });
 
   client.on('message', (topic, message) => {
