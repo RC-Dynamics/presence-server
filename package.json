@@ -4,7 +4,7 @@
   "description": "Server for Presence using Knot",
   "main": "server.js",
   "engines": {
-    "node": "8.x",
+    "node": "8.1.4",
     "npm": "5.x"
   },
   "scripts": {
